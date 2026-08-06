@@ -1,4 +1,4 @@
-import { PatientDTO } from "../schemas/patientSchema";
+import { PatientFormData } from "../patientSchema";
 
 export class Patient {
   constructor(
@@ -6,9 +6,14 @@ export class Patient {
     public readonly firstName: string,
     public readonly lastName: string,
     public readonly email: string,
-    public readonly phone: string,
+    public readonly phoneNumber: string,
     public readonly dateOfBirth: string,
-    public readonly medicalHistory?: string,
+    public readonly gender: string,
+    public readonly address: string,
+    public readonly preferredLanguage: string,
+    public readonly nationality: string,
+    public readonly middleName?: string,
+    public readonly religion?: string,
     public readonly createdAt: Date = new Date()
   ) {}
 
@@ -16,26 +21,36 @@ export class Patient {
     return `${this.firstName} ${this.lastName}`;
   }
 
-  public static fromDTO(dto: PatientDTO, id: string = Date.now().toString()): Patient {
+  public static fromDTO(dto: PatientFormData, id: string = Date.now().toString()): Patient {
     return new Patient(
       id,
       dto.firstName,
       dto.lastName,
       dto.email,
-      dto.phone,
+      dto.phoneNumber,
       dto.dateOfBirth,
-      dto.medicalHistory
+      dto.gender,
+      dto.address,
+      dto.preferredLanguage,
+      dto.nationality,
+      dto.middleName,
+      dto.religion
     );
   }
 
-  public toDTO(): PatientDTO {
+  public toDTO(): PatientFormData {
     return {
       firstName: this.firstName,
       lastName: this.lastName,
       email: this.email,
-      phone: this.phone,
+      phoneNumber: this.phoneNumber,
       dateOfBirth: this.dateOfBirth,
-      medicalHistory: this.medicalHistory,
+      gender: this.gender,
+      address: this.address,
+      preferredLanguage: this.preferredLanguage,
+      nationality: this.nationality,
+      middleName: this.middleName,
+      religion: this.religion,
     };
   }
 }

@@ -1,1 +1,3 @@
-export type { PatientDTO } from "../schemas/patientSchema";
+import { PatientFormData } from "../patientSchema";
+
+export type PatientDTO = PatientFormData;
