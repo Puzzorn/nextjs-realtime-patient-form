@@ -143,7 +143,7 @@ npm run build
 ## 🏛️ Architecture & Project Structure Overview
 
 ```
-c:/workspace/GitHub/nextjs-realtime-patient-form/
+../nextjs-realtime-patient-form/
 ├── src/
 │   ├── app/                      # Next.js 15 App Router pages & layouts
 │   │   ├── page.tsx              # Main portal navigation hub

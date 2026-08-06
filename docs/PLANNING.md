@@ -17,7 +17,7 @@ The **Agnos Real-Time Patient System** is designed to streamline healthcare inta
 To ensure long-term maintainability, testability, and decoupling of concerns, the system strictly implements **Clean Architecture** principles across 5 isolated layer boundaries.
 
 ```
-c:/workspace/GitHub/nextjs-realtime-patient-form/
+../nextjs-realtime-patient-form/
 ├── src/
 │   ├── domain/               # [Layer 1] Pure Domain Business Logic & Schemas
 │   ├── infrastructure/       # [Layer 2] External Gateway Adapters & Storage Repositories
