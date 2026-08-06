@@ -11,7 +11,7 @@ import {
   StaffPatientSubmittedPayload,
 } from "@/domain/patientSchema";
 
-const SERVER_URL = process.env.NEXT_PUBLIC_SOCKET_URL || "http://localhost:4000";
+const SERVER_URL = process.env.NEXT_PUBLIC_SOCKET_URL || "http://localhost:3001";
 
 let socket: Socket | null = null;
 

@@ -7,14 +7,20 @@ const app = express();
 app.use(cors());
 
 const server = http.createServer(app);
+const clientOrigin = process.env.CLIENT_ORIGIN
+  ? (process.env.CLIENT_ORIGIN.includes(',')
+      ? process.env.CLIENT_ORIGIN.split(',').map((s) => s.trim())
+      : process.env.CLIENT_ORIGIN)
+  : '*';
+
 const io = new Server(server, {
   cors: {
-    origin: '*',
+    origin: clientOrigin,
     methods: ['GET', 'POST']
   }
 });
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3001;
 
 // In-memory patient store
 // Key: patientId, Value: { patientId, socketId, status, data, submittedAt, lastUpdated }
@@ -199,3 +205,18 @@ io.on('connection', (socket) => {
 server.listen(PORT, () => {
   console.log(`[Server] Socket.io gateway running on http://localhost:${PORT}`);
 });
+
+// Graceful shutdown handling
+const gracefulShutdown = (signal) => {
+  console.log(`[Server] Received ${signal}. Closing server gracefully...`);
+  io.close(() => {
+    console.log('[Server] Socket.io connections closed.');
+    server.close(() => {
+      console.log('[Server] HTTP server closed.');
+      process.exit(0);
+    });
+  });
+};
+
+process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+process.on('SIGINT', () => gracefulShutdown('SIGINT'));
