@@ -7,3 +7,5 @@ export * from "./badge";
 export * from "./table";
 export * from "./form";
 export * from "./textarea";
+export * from "./date-picker";
+

@@ -2,12 +2,11 @@ import { z } from "zod";
 
 /**
  * Emergency Contact Schema
- * Required fields if object is present: name, relationship
- * Optional field: phoneNumber
+ * All fields are optional (name, relationship, phoneNumber)
  */
 export const emergencyContactSchema = z.object({
-  name: z.string().min(1, "Emergency contact name is required"),
-  relationship: z.string().min(1, "Relationship is required"),
+  name: z.string().optional(),
+  relationship: z.string().optional(),
   phoneNumber: z.string().optional(),
 });
 
@@ -24,7 +23,9 @@ export const patientSchema = z.object({
   lastName: z.string().min(1, "Last name is required"),
   dateOfBirth: z.string().min(1, "Date of birth is required"),
   gender: z.string().min(1, "Gender selection is required"),
-  phoneNumber: z.string().min(10, "Phone number must be at least 10 digits"),
+  phoneNumber: z
+    .string()
+    .regex(/^[0-9]{9,15}$/, "Phone number must contain 9 to 15 digits"),
   email: z.string().min(1, "Email is required").email("Invalid email address format"),
   address: z.string().min(1, "Address is required"),
   preferredLanguage: z.string().min(1, "Preferred language is required"),
@@ -32,7 +33,7 @@ export const patientSchema = z.object({
 
   // Optional Fields (3)
   middleName: z.string().optional(),
-  emergencyContact: emergencyContactSchema.optional(),
+  emergencyContact: emergencyContactSchema.optional().nullable(),
   religion: z.string().optional(),
 });
 

@@ -122,28 +122,37 @@ invalidEmails.forEach((emailStr) => {
 });
 
 const invalidPhones = [
-  "123456789", // 9 digits (too short)
-  "123",       // 3 digits
-  "",          // empty string
+  "12345678",           // 8 digits (too short)
+  "123",              // 3 digits
+  "",                 // empty string
+  "1234567890123456", // 16 digits (too long)
+  "abcdefghij",       // alpha characters
+  "          ",       // spaces
 ];
 
 invalidPhones.forEach((phoneStr) => {
   const badPhoneData = { ...validMinimalData, phoneNumber: phoneStr };
   const resBadPhone = patientSchema.safeParse(badPhoneData);
   assertTest(
-    `Invalid phone number format '${phoneStr}' (<10 chars) fails validation`,
+    `Invalid phone number format '${phoneStr}' fails validation`,
     !resBadPhone.success
   );
 });
 
-// Stress testing edge cases on phone number:
-const spacePhone = { ...validMinimalData, phoneNumber: "          " }; // 10 spaces
-const resSpacePhone = patientSchema.safeParse(spacePhone);
-console.log(`[INFORMATIONAL] 10 spaces phone number passes Zod .min(10): ${resSpacePhone.success}`);
+const validPhones = [
+  "123456789",       // 9 digits
+  "1234567890",      // 10 digits
+  "123456789012345", // 15 digits
+];
 
-const alphaPhone = { ...validMinimalData, phoneNumber: "abcdefghij" }; // 10 alpha characters
-const resAlphaPhone = patientSchema.safeParse(alphaPhone);
-console.log(`[INFORMATIONAL] 10 alpha chars phone number passes Zod .min(10): ${resAlphaPhone.success}`);
+validPhones.forEach((phoneStr) => {
+  const goodPhoneData = { ...validMinimalData, phoneNumber: phoneStr };
+  const resGoodPhone = patientSchema.safeParse(goodPhoneData);
+  assertTest(
+    `Valid phone number '${phoneStr}' (9-15 digits) passes validation`,
+    resGoodPhone.success
+  );
+});
 
 // -------------------------------------------------------------
 // 4. Optional fields (middleName, emergencyContact, religion)
@@ -192,23 +201,33 @@ assertTest("Optional emergencyContact without optional EC phoneNumber validates 
 const withoutEC = { ...validMinimalData, emergencyContact: undefined };
 assertTest("Optional emergencyContact undefined validates cleanly", patientSchema.safeParse(withoutEC).success);
 
-const withInvalidEC_MissingName = {
+const withEmptyEC_Name = {
   ...validMinimalData,
   emergencyContact: {
     name: "",
     relationship: "Mother",
   },
 };
-assertTest("emergencyContact with empty name fails validation", !patientSchema.safeParse(withInvalidEC_MissingName).success);
+assertTest("emergencyContact with empty name validates cleanly (explicitly optional)", patientSchema.safeParse(withEmptyEC_Name).success);
 
-const withInvalidEC_MissingRelationship = {
+const withEmptyEC_Relationship = {
   ...validMinimalData,
   emergencyContact: {
     name: "Alice Smith",
     relationship: "",
   },
 };
-assertTest("emergencyContact with empty relationship fails validation", !patientSchema.safeParse(withInvalidEC_MissingRelationship).success);
+assertTest("emergencyContact with empty relationship validates cleanly (explicitly optional)", patientSchema.safeParse(withEmptyEC_Relationship).success);
+
+const withEmptyEC_All = {
+  ...validMinimalData,
+  emergencyContact: {
+    name: "",
+    relationship: "",
+    phoneNumber: "",
+  },
+};
+assertTest("emergencyContact with all empty fields validates cleanly", patientSchema.safeParse(withEmptyEC_All).success);
 
 
 console.log(`\n=== TEST SUMMARY ===`);

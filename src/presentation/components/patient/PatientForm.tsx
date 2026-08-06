@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { Controller } from "react-hook-form";
 import { usePatientForm } from "@/presentation/hooks/usePatientForm";
 import {
   Card,
@@ -15,6 +16,7 @@ import { Select, SelectOption } from "@/presentation/components/ui/select";
 import { Textarea } from "@/presentation/components/ui/textarea";
 import { Button } from "@/presentation/components/ui/button";
 import { Badge } from "@/presentation/components/ui/badge";
+import { DatePicker } from "@/presentation/components/ui/date-picker";
 import { CheckCircle2, UserCheck, ShieldAlert, Wifi, WifiOff } from "lucide-react";
 
 export const PatientForm: React.FC = () => {
@@ -160,14 +162,21 @@ export const PatientForm: React.FC = () => {
                 <Label htmlFor="dateOfBirth" required>
                   Date of Birth
                 </Label>
-                <Input
-                  id="dateOfBirth"
-                  type="date"
-                  disabled={isSubmitted}
-                  error={errors.dateOfBirth?.message}
-                  {...register("dateOfBirth", {
-                    onChange: (e) => handleFieldChange("dateOfBirth", e.target.value),
-                  })}
+                <Controller
+                  name="dateOfBirth"
+                  control={methods.control}
+                  render={({ field }) => (
+                    <DatePicker
+                      id="dateOfBirth"
+                      value={field.value || ""}
+                      disabled={isSubmitted}
+                      error={errors.dateOfBirth?.message}
+                      onChange={(dateStr) => {
+                        field.onChange(dateStr);
+                        handleFieldChange("dateOfBirth", dateStr);
+                      }}
+                    />
+                  )}
                 />
                 {errors.dateOfBirth && (
                   <p className="text-xs text-rose-500 font-medium">{errors.dateOfBirth.message}</p>
@@ -217,7 +226,12 @@ export const PatientForm: React.FC = () => {
                   placeholder="e.g. 0812345678"
                   error={errors.phoneNumber?.message}
                   {...register("phoneNumber", {
-                    onChange: (e) => handleFieldChange("phoneNumber", e.target.value),
+                    onChange: (e) => {
+                      const cleaned = e.target.value.replace(/[^0-9]/g, "");
+                      e.target.value = cleaned;
+                      methods.setValue("phoneNumber", cleaned, { shouldValidate: true });
+                      handleFieldChange("phoneNumber", cleaned);
+                    },
                   })}
                 />
                 {errors.phoneNumber && (
@@ -377,8 +391,12 @@ export const PatientForm: React.FC = () => {
                   placeholder="e.g. 0898765432"
                   error={errors.emergencyContact?.phoneNumber?.message}
                   {...register("emergencyContact.phoneNumber", {
-                    onChange: (e) =>
-                      handleFieldChange("emergencyContact.phoneNumber", e.target.value),
+                    onChange: (e) => {
+                      const cleaned = e.target.value.replace(/[^0-9]/g, "");
+                      e.target.value = cleaned;
+                      methods.setValue("emergencyContact.phoneNumber", cleaned);
+                      handleFieldChange("emergencyContact.phoneNumber", cleaned);
+                    },
                   })}
                 />
                 {errors.emergencyContact?.phoneNumber && (

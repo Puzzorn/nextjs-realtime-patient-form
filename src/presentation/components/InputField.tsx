@@ -28,6 +28,9 @@ export const InputField: React.FC<InputFieldProps> = ({
         {...registration}
         {...props}
         onChange={(e) => {
+          if (props.type === "tel" || registration.name?.toLowerCase().includes("phone") || props.name?.toLowerCase().includes("phone")) {
+            e.target.value = e.target.value.replace(/[^0-9]/g, "");
+          }
           registration.onChange(e);
           if (onValueChange) {
             onValueChange(e.target.value);
