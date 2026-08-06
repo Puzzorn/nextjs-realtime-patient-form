@@ -50,7 +50,7 @@ Clone the repository and install dependencies for both the Next.js frontend appl
 
 ```bash
 # Clone the repository
-git clone https://github.com/agnos-health/nextjs-realtime-patient-form.git
+git clone https://github.com/Puzzorn/nextjs-realtime-patient-form.git
 cd nextjs-realtime-patient-form
 
 # Install root dependencies (Next.js Frontend)
