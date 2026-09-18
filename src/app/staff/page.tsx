@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowLeft, Building2 } from "lucide-react";
 
 export const metadata = {
-  title: "Staff Dashboard | Agnos Real-Time System",
+  title: "Staff Dashboard | CareSync Real-Time System",
   description: "Real-time monitoring dashboard for medical staff and intake administrators.",
 };
 

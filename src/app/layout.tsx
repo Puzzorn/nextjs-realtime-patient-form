@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Agnos Real-Time Patient System",
+  title: "CareSync Real-Time Patient System",
   description: "Real-time collaborative patient registration and telemetry system",
 };
 

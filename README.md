@@ -1,4 +1,4 @@
-# Agnos Real-Time Patient System
+# CareSync Real-Time Patient System
 
 A production-grade, real-time patient registration intake application and staff monitoring dashboard built with **Next.js 15 (App Router)**, **React 19**, **TypeScript 5.7**, **TailwindCSS 3.4**, **Zod**, **React Hook Form**, and **Socket.io 4.8**.
 
@@ -6,7 +6,7 @@ A production-grade, real-time patient registration intake application and staff 
 
 ## 📌 Project Overview
 
-The **Agnos Real-Time Patient System** addresses the critical operational challenge of patient intake delays and data entry bottlenecks in healthcare environments. By establishing a bidirectional WebSocket gateway between patient mobile devices and clinic administrative dashboards, staff members gain instant visibility into patient registration progress as it happens.
+The **CareSync Real-Time Patient System** addresses the critical operational challenge of patient intake delays and data entry bottlenecks in healthcare environments. By establishing a bidirectional WebSocket gateway between patient mobile devices and clinic administrative dashboards, staff members gain instant visibility into patient registration progress as it happens.
 
 ### Key Architectural Pillars
 - **Dual-Portal Architecture**:

@@ -1,7 +1,7 @@
 {
-  "name": "agnos-realtime-server",
+  "name": "caresync-realtime-server",
   "version": "1.0.0",
-  "description": "Standalone Socket.io server for Agnos Real-Time Patient System",
+  "description": "Standalone Socket.io server for CareSync Real-Time Patient System",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",

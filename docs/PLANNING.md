@@ -1,6 +1,6 @@
 # Development & System Architecture Planning Document
 
-**Project**: Agnos Real-Time Patient System  
+**Project**: CareSync Real-Time Patient System  
 **Version**: 1.0.0  
 **Target Environment**: Next.js 15 (App Router), React 19, TypeScript 5.7, Node.js / Socket.io 4.8  
 
@@ -8,7 +8,7 @@
 
 ## Executive Summary
 
-The **Agnos Real-Time Patient System** is designed to streamline healthcare intake by providing real-time synchronization between patient-facing registration forms and clinic administrative monitoring dashboards. This document outlines the system architecture, component composition, responsive design guidelines, and real-time WebSocket protocol specifications.
+The **CareSync Real-Time Patient System** is designed to streamline healthcare intake by providing real-time synchronization between patient-facing registration forms and clinic administrative monitoring dashboards. This document outlines the system architecture, component composition, responsive design guidelines, and real-time WebSocket protocol specifications.
 
 ---
 

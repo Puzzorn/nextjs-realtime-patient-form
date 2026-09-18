@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowLeft, Stethoscope } from "lucide-react";
 
 export const metadata = {
-  title: "Patient Intake Form | Agnos System",
+  title: "Patient Intake Form | CareSync System",
   description: "Real-Time Patient Registration and Intake Form",
 };
 
@@ -19,7 +19,7 @@ export default function PatientPage() {
             <ArrowLeft className="h-4 w-4" /> Back to Main Navigation
           </Link>
           <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold text-sm">
-            <Stethoscope className="h-5 w-5" /> Agnos Health Portal
+            <Stethoscope className="h-5 w-5" /> CareSync Health Portal
           </div>
         </div>
 

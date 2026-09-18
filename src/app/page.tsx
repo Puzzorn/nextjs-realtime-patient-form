@@ -4,7 +4,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/pre
 import { Badge } from "@/presentation/components/ui/badge";
 
 export const metadata = {
-  title: "Agnos Real-Time Patient Intake System",
+  title: "CareSync Real-Time Patient Intake System",
   description: "Real-Time Patient Intake & Staff Monitoring Dashboard",
 };
 
@@ -19,7 +19,7 @@ export default function HomePage() {
           </div>
           
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50">
-            Agnos Real-Time <span className="text-blue-600 dark:text-blue-400">Patient System</span>
+            CareSync Real-Time <span className="text-blue-600 dark:text-blue-400">Patient System</span>
           </h1>
 
           <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400">
@@ -101,7 +101,7 @@ export default function HomePage() {
       </div>
 
       <footer className="text-center text-xs text-slate-400 dark:text-slate-500 pt-8">
-        &copy; {new Date().getFullYear()} Agnos Healthcare Technologies. All rights reserved.
+        &copy; {new Date().getFullYear()} CareSync Health Technologies. All rights reserved.
       </footer>
     </main>
   );
